@@ -36,7 +36,7 @@ public class TagCounter {
       this.divCount = divs.size();
       Elements bodys = doc.select("body");
       this.bodyCount = bodys.size();
-    } catch (IOException e) {
+    } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }

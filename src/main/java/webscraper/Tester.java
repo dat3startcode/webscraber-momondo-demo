@@ -2,6 +2,14 @@ package webscraper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import jdk.jshell.spi.ExecutionControl;
 
 public class Tester {
 
@@ -17,11 +25,11 @@ public class Tester {
         return urls;
     }
 
-    public void runParrallel() {
-
+    public static List<TagCounter> runParrallel() throws ExecutionControl.NotImplementedException {
+        throw new ExecutionControl.NotImplementedException("Pleeeeease implement me!");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         long timeSequental;
         long start = System.nanoTime();
 
@@ -38,14 +46,13 @@ public class Tester {
         }
 
         /*
-    long timeParallel;
-    start = System.nanoTime();
-    //TODO Add your parrallel calculation here
-    end = System.nanoTime();
-    timeParallel = end - start;
-    System.out.println("Time Parallel: "+((timeParallel)/100_000_000)+" ms.);
-    
-    System.out.println("Paralle was "+timeSequental/timeParallel + " times faster");
+        
+        start = System.nanoTime();
+        //TODO Add your parrallel calculation here     
+        long timeParallel = System.nanoTime() - start;
+        System.out.println("Time Parallel: " + ((timeParallel) / 1_000_000) + " ms.");
+        System.out.println("Paralle was " + timeSequental / timeParallel + " times faster");
+       
          */
     }
 }

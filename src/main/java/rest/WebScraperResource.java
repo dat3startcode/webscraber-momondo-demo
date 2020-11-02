@@ -9,9 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import webscraper.TagCounter;
 import webscraper.Tester;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.util.ArrayList;
 import webscraper.TagDTO;
 
 /**
@@ -21,25 +18,24 @@ import webscraper.TagDTO;
  */
 @Path("scrape")
 public class WebScraperResource {
-
     @Context
     private UriInfo context;
-
+    
+    @Path("sequental")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getTags() {
-        return makeResponse();
-    }
-
-    private String makeResponse() {
-        //return "{\"todo\":\"Make me return the calculated values from the external requests\"}"; 
+    public String getTagsSequental() {
+        long startTime = System.nanoTime();
         List<TagCounter> dataFeched = Tester.runSequental();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        List<TagDTO> results = new ArrayList();
-        for(TagCounter tc: dataFeched){
-            results.add(new TagDTO(tc));
-        }
-        return gson.toJson(results);
+        long endTime = System.nanoTime()-startTime;
+        return TagDTO.getTagsAsJson("Sequental fetching",dataFeched, endTime);
     }
-
+    @Path("parallel")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getTagsParrallel() {
+        return "[Make me return results, fetched by a parrallel strategy";
+    }
+    
+    
 }
