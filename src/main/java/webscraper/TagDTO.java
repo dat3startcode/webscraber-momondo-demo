@@ -35,6 +35,14 @@ public class TagDTO {
     }
     return GSON.toJson(new TagDTOs(title, tagCounterDTOs,time));
    }
+    
+   public static String getTagDTOList(String title, List<TagDTO> tagDtos,long time){
+    List<TagDTO> tagCounterDTOs = new ArrayList<>();
+    for(TagDTO dto : tagDtos){
+        tagCounterDTOs.add(dto);
+    }
+    return GSON.toJson(new TagDTOs(title, tagCounterDTOs,time));
+   }
   
   public String url;
   public int divCount;
